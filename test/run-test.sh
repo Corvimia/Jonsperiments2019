@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This is the entrypoint to the testing system, written for Baystation12 and
+# This is the entrypoint to the testing system, written for jonsperiments and
 # inspired by Rust's configure system
 #
 # The tests are split up into groups by the `case` at the bottom, and the
@@ -229,11 +229,11 @@ function run_byond_tests {
         ./install-byond.sh || exit 1
         source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
     fi
-    run_test_ci "check globals build" "python3 tools/GenerateGlobalVarAccess/gen_globals.py baystation12.dme code/_helpers/global_access.dm"
+    run_test_ci "check globals build" "python3 tools/GenerateGlobalVarAccess/gen_globals.py jonsperiments.dme code/_helpers/global_access.dm"
     run_test "check globals unchanged" "md5sum -c - <<< '7c5e15cbffb4a7792c2c60179176ab90 *code/_helpers/global_access.dm'"
-    run_test "build map unit tests" "scripts/dm.sh -DUNIT_TEST -M$MAP_PATH baystation12.dme"
+    run_test "build map unit tests" "scripts/dm.sh -DUNIT_TEST -M$MAP_PATH jonsperiments.dme"
     run_test "check no warnings in build" "grep ', 0 warnings' build_log.txt"
-    run_test "run unit tests" "DreamDaemon baystation12.dmb -invisible -trusted -core 2>&1 | tee log.txt"
+    run_test "run unit tests" "DreamDaemon jonsperiments.dmb -invisible -trusted -core 2>&1 | tee log.txt"
     run_test "check tests passed" "grep 'All Unit Tests Passed' log.txt"
     run_test "check no runtimes" "grep 'Caught 0 Runtimes' log.txt"
     run_test_fail "check no runtimes 2" "grep 'runtime error:' log.txt"

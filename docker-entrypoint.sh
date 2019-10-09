@@ -1,6 +1,6 @@
 #!/bin/sh
 
 mkdir /byond
-chown $RUNAS:$RUNAS /byond /bs12 baystation12.rsc
+chown $RUNAS:$RUNAS /byond /bs12 jonsperiments.rsc
 
-gosu $RUNAS DreamDaemon baystation12.dmb 8000 -trusted -verbose
+gosu $RUNAS DreamDaemon jonsperiments.dmb 8000 -trusted -verbose
