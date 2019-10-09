@@ -2,10 +2,10 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  imageName: 'registry.baystation12.net/baystation12:latest'
+  imageName: 'jonsperiments [not needed for now]'
 
 steps:
-- script: git clone https://github.com/Baystation12/custom-items
+- script: git clone https://github.com/Jonsperiments/custom-items
   displayName: 'clone custom items'
 
 - task: Docker@0
@@ -18,7 +18,7 @@ steps:
   displayName: 'registry login'
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'bs12'
+    dockerRegistryEndpoint: '[not needed for now]'
     command: login
 
 - task: Docker@1
